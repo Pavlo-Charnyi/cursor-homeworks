@@ -35,7 +35,7 @@ document.writeln("<br>" + `Сума до оплати: ${summToPay}`);
 
 const income = (summToPay - (summ.toFixed(2) / 2)).toFixed(2);
 
-document.writeln("<br>" + Math.sign(income) > 0 ? `Чистий прибуток: ${income}` : `Збитки: ${income}`);
+document.writeln(Math.sign(income) > 0 ? `<br>Чистий прибуток: ${income}` : `<br>Збитки: ${income}`);
 
 // Advanced:
 document.writeln("<br>" + `
