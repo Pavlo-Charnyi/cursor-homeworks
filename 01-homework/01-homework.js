@@ -18,11 +18,11 @@ document.writeln("<br>" + round); //200
 const isEven = summFloor % 2 === 0; //true
 document.writeln("<br>" + isEven);
 
-const remainder = (500 - summ).toFixed(2); //270.12 
+const remainder = (500 - summ).toFixed(2); 
 document.writeln("<br>" + remainder); //270.12 
 
-const meanValue = ((pants + sneakers + hoody) / 3).toFixed(2); 
-document.writeln("<br>" + meanValue); 
+const meanValue = (summ  / 3).toFixed(2); 
+document.writeln("<br>" + meanValue); //76.63
 
 const discount = Math.floor(Math.random() * 100) + 1; 
 document.writeln("<br>" + `Знижка у відсотках: ${discount}`);
@@ -33,9 +33,11 @@ document.writeln("<br>" + `Сума знижки: ${discountSumm}`);
 const summToPay = (summ.toFixed(2) - discountSumm).toFixed(2)
 document.writeln("<br>" + `Сума до оплати: ${summToPay}`);
 
-const income = (summToPay - (summ.toFixed(2) / 2)).toFixed(2);
+const halfSumm = summ.toFixed(2) / 2;
+const income = (summToPay - halfSumm).toFixed(2);
 
-document.writeln(Math.sign(income) > 0 ? `<br>Чистий прибуток: ${income}` : `<br>Збитки: ${income}`);
+const incomeOrLosses = Math.sign(income) > 0;
+document.writeln(incomeOrLosses ? `<br>Чистий прибуток: ${income}` : `<br>Збитки: ${income}`);
 
 // Advanced:
 document.writeln("<br>" + `
@@ -51,5 +53,5 @@ document.writeln("<br>" + `
 <br>Випадкова знижка (у відсотках): ${discount}
 <br>Сума знижки: ${discountSumm}
 <br>Сума до оплати після зі знижкою: ${summToPay} 
-<br>${Math.sign(income) > 0 ? `Чистий прибуток: ${income}` : `Збитки: ${income}`}
+<br>${incomeOrLosses ? `Чистий прибуток: ${income}` : `Збитки: ${income}`}
 `);
