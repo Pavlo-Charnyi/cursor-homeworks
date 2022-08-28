@@ -18,9 +18,7 @@ const skipEven = confirm("Skip even numbers?")
 
 let summ = 0;
 for (N; N <= M; N++) {
-    if (skipEven) {
-        if (N%2===0) continue;
-    }
+    if (skipEven && N%2===0) continue;
     summ+=N
 }
 
