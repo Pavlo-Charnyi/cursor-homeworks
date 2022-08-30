@@ -13,7 +13,7 @@ const marks = [4, 5, 5, 3, 4, 5];
 
 ++ Зіставте пари з попереднього завдання та теми проєктів, над якими студенти будуть працювати. Повинен вийти вкладений масив виду: [["Олександр і Олена", "Теорія автоматів"], [...], [...]]
 
-Зіставте оцінки(marks) зі студентом(students): [["Саша", 4], [...], [...]]
+++ Зіставте оцінки(marks) зі студентом(students): [["Саша", 4], [...], [...]]
 
 Поставте кожній парі випадкову оцінку(від 1 до 5) за проєкт(тут функція буде нечистою, але не повинна мутувати массив): [["Олександр і Олена", "Теорія автоматів", 5], [...], [...]]
  */
@@ -38,8 +38,7 @@ const getPairs = (arr) => {
     male.length >= female.length ? resultArray.length = male.length : resultArray.length = female.length
        
     for (let i = 0; i < male.length; i++) {
-        resultArray[i] = [];
-        resultArray[i].push(male[i], female[i])
+        resultArray[i] = [male[i], female[i]];
     }
 
     return resultArray;
@@ -47,24 +46,28 @@ const getPairs = (arr) => {
 
 // Зіставте пари з попереднього завдання та теми проєктів, над якими студенти будуть працювати. Повинен вийти вкладений масив виду: [["Олександр і Олена", "Теорія автоматів"], [...], [...]]
 const projectAssigner = (arr1, arr2) => {
-    const pairs = [...arr1]
-    const topics = [...arr2]
-    const pairsProject = []
+    const pairs = [...arr1], topics = [...arr2], pairsProject = []
 
     pairs.length >= topics.length ? pairsProject.length = pairs.length : pairsProject.length = topics.length
 
     for (let i = 0; i < pairsProject.length; i++) {
-        pairsProject[i] = [];
-        pairsProject[i].push(`${pairs[i][0]} і ${pairs[i][1]}`, topics[i])
+        pairsProject[i] = [`${pairs[i][0]} і ${pairs[i][1]}`, topics[i]]
+
     }
 
     console.table(pairsProject);
     return pairsProject
 }
 
-// console.log(projectAssigner(getPairs(students), themes)); 
+console.log(projectAssigner(getPairs(students), themes)); 
 
 // Зіставте оцінки(marks) зі студентом(students): [["Саша", 4], [...], [...]]
-const studentsMarks = (students, ) => {
-
+const marksAssigner = (students, marks) => {
+    const studentsArray = [...students], marksArray = [...marks], studentMark = []
+    for (let i = 0; i < studentsArray.length; i++) {
+        studentMark[i] = [studentsArray[i], marksArray[i]]
+    }
+    return studentMark
 }
+
+console.log(marksAssigner(students, marks)); 
