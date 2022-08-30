@@ -42,6 +42,7 @@ const getRandomNumber = (min, max) => {
 //Створити функцію, яка рахує скільки разів певна буква повторюється в слові. Приклад: countLetter("а", "Асталавіста") -> 4
 const countLetter = (letter, word) => {
     let counter = 0;
+    word = word.toLowerCase();
     for (let i = 0; i < word.length; i++) {
         word[i] === letter ? counter++ : ""
     }
