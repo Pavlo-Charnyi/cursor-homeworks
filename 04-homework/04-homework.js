@@ -11,7 +11,7 @@ const marks = [4, 5, 5, 3, 4, 5];
 
 ++ Розділіть студентів на пари(хлопець + дівчина) для работи над проєктом. У вас повинен вийти вкладений масив з парами студентів: [["Олександр", "Олена"], [..], [...]];
 
-Зіставте пари з попереднього завдання та теми проєктів, над якими студенти будуть працювати. Повинен вийти вкладений масив виду: [["Олександр і Олена", "Теорія автоматів"], [...], [...]]
+++ Зіставте пари з попереднього завдання та теми проєктів, над якими студенти будуть працювати. Повинен вийти вкладений масив виду: [["Олександр і Олена", "Теорія автоматів"], [...], [...]]
 
 Зіставте оцінки(marks) зі студентом(students): [["Саша", 4], [...], [...]]
 
@@ -45,4 +45,26 @@ const getPairs = (arr) => {
     return resultArray;
 }
 
-console.log(getPairs(students)); 
+// Зіставте пари з попереднього завдання та теми проєктів, над якими студенти будуть працювати. Повинен вийти вкладений масив виду: [["Олександр і Олена", "Теорія автоматів"], [...], [...]]
+const projectAssigner = (arr1, arr2) => {
+    const pairs = [...arr1]
+    const topics = [...arr2]
+    const pairsProject = []
+
+    pairs.length >= topics.length ? pairsProject.length = pairs.length : pairsProject.length = topics.length
+
+    for (let i = 0; i < pairsProject.length; i++) {
+        pairsProject[i] = [];
+        pairsProject[i].push(`${pairs[i][0]} і ${pairs[i][1]}`, topics[i])
+    }
+
+    console.table(pairsProject);
+    return pairsProject
+}
+
+// console.log(projectAssigner(getPairs(students), themes)); 
+
+// Зіставте оцінки(marks) зі студентом(students): [["Саша", 4], [...], [...]]
+const studentsMarks = (students, ) => {
+
+}
