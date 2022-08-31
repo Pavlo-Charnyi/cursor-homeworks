@@ -81,17 +81,17 @@ const pairMarkAssigned = pairMarkAssigner (pairsProject, marks)
 console.log(pairMarkAssigned);
 
 
-// document.writeln(`
-// <h1 style="color: darkblue;" >Результати роботи функцій дивись в консолі.</h1><hr>
+document.writeln(`
+<h1 style="color: darkblue;" >Результати роботи функцій дивись в консолі.</h1><hr>
 
-// <h1>Після виклику функцій оригінальні масиви залишись без змін (мутацій):</h1>
-// <h2>Масив студентів:</h2>
-// <p>[${students}]</p>
+<h1>Після виклику функцій оригінальні масиви залишись без змін (мутацій):</h1>
+<h2>Масив студентів:</h2>
+<p>[${students}]</p>
 
-// <h2>Масив тем:</h2>
-// <p>[${themes}]</p>
+<h2>Масив тем:</h2>
+<p>[${themes}]</p>
 
-// <h2>Масив оцінок:</h2>
-// <p>[${marks}]</p>
-// `);
+<h2>Масив оцінок:</h2>
+<p>[${marks}]</p>
+`);
 
