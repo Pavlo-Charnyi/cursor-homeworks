@@ -1,34 +1,31 @@
-let N, M;
+let min, max;
 const messages = ["Enter first integer:", "Enter second integer:", "Enter only integers:"];
 const processed = (message) => parseInt(prompt(message))
 
-while (N == undefined || isNaN(N)) {
-    if (N == undefined) N = processed(messages[0]);
-    if (isNaN(N)) N = processed(messages[2]);
+while (isNaN(min)) {
+    min == undefined ? min = processed(messages[0]) : min = processed(messages[2]);
 }
 
-while (M == undefined || isNaN(M)) {
-    if (M == undefined) M = processed((messages[1]));
-    if (isNaN(M)) M = processed((messages[2]));
+while (isNaN(max)) {
+    max == undefined ? max = processed(messages[1]) : max = processed(messages[2]);
 }
-
-let [First, Second] = [N, M]
 
 const skipEven = confirm("Skip even numbers?")
 
 let summ = 0;
-for (N; N <= M; N++) {
-    if (skipEven && N%2===0) continue;
-    summ+=N
+for (let i = min; i <= max; i++) {
+    let isCounterEven = i%2===0;
+    if (skipEven && isCounterEven) continue;
+    summ+=i
 }
 
 document.writeln(`Ви вказали наступні дані:
-<br>Перше число: ${First} 
-<br>Друге Число: ${Second}`)
+<br>Перше число: ${min} 
+<br>Друге Число: ${max}`)
 
-const ressultMessageSkipEven = `Ви вибрали пропустити парні числа, тому сума чисел від  ${First} до ${Second} дорівнює:`
-const ressultMessageNoSkip = `Ви вибрали враховувати парні числа, тому сума чисел від  ${First} до ${Second} дорівнює:`;
+const ressultMessageSkipEven = `Ви вибрали пропустити парні числа, тому сума чисел від  ${min} до ${max} дорівнює:`
+const ressultMessageNoSkip = `Ви вибрали враховувати парні числа, тому сума чисел від  ${min} до ${max} дорівнює:`;
 
-document.writeln(`<br>${skipEven===true ? ressultMessageSkipEven : ressultMessageNoSkip}<br>`);
+document.writeln(`<br>${skipEven ? ressultMessageSkipEven : ressultMessageNoSkip}<br>`);
 
 document.writeln(`<h1>${summ}</h1>`)
