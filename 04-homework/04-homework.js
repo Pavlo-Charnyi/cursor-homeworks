@@ -56,6 +56,11 @@ const markAssigner = (students, marks) => {
 //Поставте кожній парі випадкову оцінку(від 1 до 5) за проєкт(тут функція буде нечистою, але не повинна мутувати массив): [["Олександр і Олена", "Теорія автоматів", 5], [...], [...]]
 const pairMarkAssigner = (pairsProject, marks) => {
     const pairsProjectMarks = [...pairsProject]
+    
+    for (let i = 0; i < pairsProjectMarks.length; i++) {
+        pairsProjectMarks[i] = pairsProjectMarks[i].toString().split(",");
+    }
+
     for (let i = 0; i < pairsProjectMarks.length; i++) {
         pairsProjectMarks[i].push(marks[getRandomNumber(0, marks.length-1)])
     }
@@ -76,17 +81,17 @@ const pairMarkAssigned = pairMarkAssigner (pairsProject, marks)
 console.log(pairMarkAssigned);
 
 
-document.writeln(`
-<h1 style="color: darkblue;" >Результати роботи функцій дивись в консолі.</h1><hr>
+// document.writeln(`
+// <h1 style="color: darkblue;" >Результати роботи функцій дивись в консолі.</h1><hr>
 
-<h1>Після виклику функцій оригінальні масиви залишись без змін (мутацій):</h1>
-<h2>Масив студентів:</h2>
-<p>[${students}]</p>
+// <h1>Після виклику функцій оригінальні масиви залишись без змін (мутацій):</h1>
+// <h2>Масив студентів:</h2>
+// <p>[${students}]</p>
 
-<h2>Масив тем:</h2>
-<p>[${themes}]</p>
+// <h2>Масив тем:</h2>
+// <p>[${themes}]</p>
 
-<h2>Масив оцінок:</h2>
-<p>[${marks}]</p>
-`);
+// <h2>Масив оцінок:</h2>
+// <p>[${marks}]</p>
+// `);
 
