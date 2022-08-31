@@ -1,9 +1,10 @@
 //Створити функцію getMaxDigit(number) – яка отримує будь-яке число та виводить найбільшу цифру в цьому числі. Приклади: 1236 -> 6, 987 -> 9, 385 -> 8
 const getMaxDigit = (number) =>{
-    number = number.toString()
+    const neWnumber = number.toString()
     let max;
-    for (let i = 0; i < number.length; i++) {
-        if (max === undefined || max < number[i]) max = number[i]
+    for (let i = 0; i < neWnumber.length; i++) {
+        max = neWnumber[0];
+        if (max < neWnumber[i]) max = neWnumber[i]
     }
     return parseInt(max);
 }
@@ -11,26 +12,38 @@ const getMaxDigit = (number) =>{
 //Створити функцію, яка визначає ступінь числа. Не використовуючи Math.pow та **. Використовуйте цикл
 const exponentiation = (number, toExponent) => {
     result = number;
-    for (let i = 1; i < toExponent; i++) result *= number 
+    for (let i = 1; i < toExponent; i++) {
+        result *= number; 
+    } 
     return result;
 }
 
 //Створити функцію, яка форматує ім'я, роблячи першу букву великою. ("влад" -> "Влад", "вЛАД" -> "Влад" і так далі);
 const firstToUpperCase = (name) => {
+    const modifiedName = name.split("")
 
-const modifiedName = name.split("")
-
-for (let i = 0; i < modifiedName.length; i++) {
-    if (i === 0) modifiedName[i] = modifiedName[i].toUpperCase() 
-    if (i > 0) modifiedName[i] = modifiedName[i].toLowerCase() 
+    for (let i = 0; i < modifiedName.length; i++) {
+        if (i === 0){
+            modifiedName[i] = modifiedName[i].toUpperCase() 
+        } else {
+            modifiedName[i] = modifiedName[i].toLowerCase() 
+        } 
+    }
+    return modifiedName.join("");
 }
 
-return modifiedName.join("");
-
+//solution with use of slice method
+const firstToUpperCaseSlice = (name) => {
+    let modifiedName = name;
+    let outputName = modifiedName.slice(0,1).toUpperCase()
+    outputName += modifiedName.slice(1).toLowerCase()
+    return outputName;
 }
 
-//Створити функцію, яка вираховує суму, що залишається після оплати податку від зарабітньої плати. (Податок = 18% + 1.5% -> 19.5%). Приклад: 1000 -> 805
-const salaryCount = (salary, tax=19.5) => {
+console.log(firstToUpperCaseSlice("paVlooo")); 
+
+//Створити функцію, яка вираховує суму, що залишається після оплати податку від заробітньої плати. (Податок = 18% + 1.5% -> 19.5%). Приклад: 1000 -> 805
+const salaryCount = (salary, tax = 19.5) => {
     return salary - (tax / 100 * salary);
 }  
 
@@ -42,19 +55,32 @@ const getRandomNumber = (min, max) => {
 //Створити функцію, яка рахує скільки разів певна буква повторюється в слові. Приклад: countLetter("а", "Асталавіста") -> 4
 const countLetter = (letter, word) => {
     let counter = 0;
-    word = word.toLowerCase();
-    for (let i = 0; i < word.length; i++) {
-        word[i] === letter ? counter++ : ""
+    const toLower = (word) => word.toLowerCase();
+    const modifiedWord = toLower(word);
+
+    for (let i = 0; i < modifiedWord.length; i++) {
+        if(modifiedWord[i] === letter){
+            counter++;
+        }  
     }
-    return counter
+    return counter;
 }
 
 //Створіть функцію, яка конвертує долари в гривні та навпаки в залежності від наявності символа $ або UAH в рядку. Приклад: convertCurrency("100$") -> 2500 грн. або convertCurrency("2500UAH") -> 100$. !Врахуйте, інші валюти не конвертуються, потрібно виводити помилку, і також регістр uah не має значення.
-const convertCurrency = (currencySumm, currencyRate=40) => {
-    currencySumm = currencySumm.toLowerCase();
-    if (!currencySumm.endsWith("$") && !currencySumm.endsWith("uah")) return "Ви не вказали вид валюти для конвертації! Для обчислення суми додайте в кінці виразу $ або UAH, в залежності від валюти, що конвертується.";
-    let pureSumm = parseInt(currencySumm); 
-    return currencySumm.endsWith("$") ? pureSumm * currencyRate : pureSumm / currencyRate;
+const convertCurrency = (currencySumm, currencyRate = 40) => {
+    const toLower = (word) => word.toLowerCase();
+    let inputCurrencySumm = toLower(currencySumm)
+
+    if (!inputCurrencySumm.endsWith("$") && !inputCurrencySumm.endsWith("uah")) return "Ви не вказали вид валюти для конвертації! Для обчислення суми додайте в кінці виразу $ або UAH, в залежності від валюти, що конвертується.";
+    let pureSumm = parseInt(inputCurrencySumm); 
+
+    if (inputCurrencySumm.endsWith("$")) {
+        pureSumm *= currencyRate
+    } else {
+        pureSumm /= currencyRate;
+    }
+
+    return pureSumm
 }
 
 //Створіть функцію генерації випадкового паролю (тільки числа), довжина встановлюється користувачем або по замовчуванню = 8 символам. Приклад: getRandomPassword(4) -> 1875, getRandomPassword() -> 87240124
@@ -88,7 +114,7 @@ const deleteDuplicateLetter = (str) => {
 
     return outputString;
 }
-
+/* 
 document.writeln(`
 <h2>Відображення максимальної цифри у введенному числі (1236):</h2>
 <h1>${getMaxDigit(1236)}</h1>
@@ -98,6 +124,9 @@ document.writeln(`
 
 <h2>Форматування імені (вЛАД)</h2>
 <h1>${firstToUpperCase("вЛАД")}</h1>
+
+<h2>Форматування імені з використанням "slice" (вЛАДислаВ)</h2>
+<h1>${firstToUpperCaseSlice("вЛАДислаВ")}</h1>
 
 <h2>Розрахунок суми, що залишається після оплати податку (1000, tax=19.5)</h2>
 <h1>${salaryCount(1000, tax=19.5)}</h1>
@@ -123,5 +152,5 @@ document.writeln(`
 <h2>Функція, яка видаляє з речення букви, які зустрічаються більше 1 разу ("Бісквіт був дуже ніжним")</h2>
 <h1>${deleteDuplicateLetter(("Бісквіт був дуже ніжним"))}</h1>
 
-`)
+`) */
 
