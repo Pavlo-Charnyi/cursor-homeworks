@@ -66,7 +66,7 @@ const pairMarkAssigner = (pairsProject, marks) => {
 const pairs = getPairs(students);
 console.log(pairs);
 
-const pairsProject = projectAssigner(getPairs(students), themes);
+const pairsProject = projectAssigner(pairs, themes);
 console.log(pairsProject); 
 
 const studentMark = markAssigner(students, marks);
@@ -75,5 +75,18 @@ console.log(studentMark);
 const pairMarkAssigned = pairMarkAssigner (pairsProject, marks)
 console.log(pairMarkAssigned);
 
-console.log(`Оригінальні масиви залишись без змін: \n ${[students]} \n ${themes} \n ${marks}`);
+
+document.writeln(`
+<h1 style="color: darkblue;" >Результати роботи функцій дивись в консолі.</h1><hr>
+
+<h1>Після виклику функцій оригінальні масиви залишись без змін (мутацій):</h1>
+<h2>Масив студентів:</h2>
+<p>[${students}]</p>
+
+<h2>Масив тем:</h2>
+<p>[${themes}]</p>
+
+<h2>Масив оцінок:</h2>
+<p>[${marks}]</p>
+`);
 
