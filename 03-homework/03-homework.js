@@ -71,7 +71,10 @@ const convertCurrency = (currencySumm, currencyRate = 40) => {
     const toLower = (word) => word.toLowerCase();
     let inputCurrencySumm = toLower(currencySumm)
 
-    if (!inputCurrencySumm.endsWith("$") && !inputCurrencySumm.endsWith("uah")) return "Ви не вказали вид валюти для конвертації! Для обчислення суми додайте в кінці виразу $ або UAH, в залежності від валюти, що конвертується.";
+    if (!inputCurrencySumm.endsWith("$") && !inputCurrencySumm.endsWith("uah")) {
+        return "Ви не вказали вид валюти для конвертації! Для обчислення суми додайте в кінці виразу $ або UAH, в залежності від валюти, що конвертується.";
+    } 
+
     let pureSumm = parseInt(inputCurrencySumm); 
 
     if (inputCurrencySumm.endsWith("$")) {
@@ -84,11 +87,11 @@ const convertCurrency = (currencySumm, currencyRate = 40) => {
 }
 
 //Створіть функцію генерації випадкового паролю (тільки числа), довжина встановлюється користувачем або по замовчуванню = 8 символам. Приклад: getRandomPassword(4) -> 1875, getRandomPassword() -> 87240124
-const getRandomPassword = (passwordLength=8) => {
-    const randomNuber = () => Math.floor(Math.random() * 10);
+const getRandomPassword = (passwordLength = 8) => {
+    const min = 0, max = 9
     let pass = "";
     for (let i = 0; i < passwordLength; i++) {
-        pass += randomNuber()
+        pass += getRandomNumber(min, max)
     }
     return pass;
 }
@@ -105,16 +108,17 @@ const isPalyndrom = (str) => {
 
 //Створіть функцію, яка видалить з речення букви, які зустрічаються більше 1 разу.
 const deleteDuplicateLetter = (str) => {
+    const inputString = str.toLowerCase().replaceAll(" ", "")
     let outputString = "";
-    str = str.toLowerCase().replaceAll(" ", "")
-
-    for (let i = 0; i < str.length; i++) {
-       if ((countLetter(str[i], str) === 1)) outputString += str[i];
+    for (let i = 0; i < inputString.length; i++) {
+       if (countLetter(inputString[i], inputString) === 1) {
+        outputString += inputString[i];
+       } 
     }
 
     return outputString;
 }
-/* 
+
 document.writeln(`
 <h2>Відображення максимальної цифри у введенному числі (1236):</h2>
 <h1>${getMaxDigit(1236)}</h1>
@@ -128,8 +132,8 @@ document.writeln(`
 <h2>Форматування імені з використанням "slice" (вЛАДислаВ)</h2>
 <h1>${firstToUpperCaseSlice("вЛАДислаВ")}</h1>
 
-<h2>Розрахунок суми, що залишається після оплати податку (1000, tax=19.5)</h2>
-<h1>${salaryCount(1000, tax=19.5)}</h1>
+<h2>Розрахунок суми, що залишається після оплати податку (1000, 19.5)</h2>
+<h1>${salaryCount(1000, 19.5)}</h1>
 
 <h2>Повертає випадкове ціле число в діапазоні від N до M (1, 10)</h2>
 <h1>${getRandomNumber(1, 10)}</h1>
@@ -140,8 +144,8 @@ document.writeln(`
 <h2>Конвертор валют - тільки долари і гривні ("100$") </h2>
 <h1>${convertCurrency("100$")}
 
-<h2>Генерація випадкового паролю (passwordLength=8)</h2>
-<h1>${getRandomPassword(passwordLength=8)}</h1>
+<h2>Генерація випадкового паролю (8)</h2>
+<h1>${getRandomPassword(8)}</h1>
 
 <h2>Функція, яка видаляє всі вказані в умові букви з речення ('a', "blablabla")</h2>
 <h1>${ deleteLetters ('a', "blablabla")}</h1>
@@ -150,7 +154,7 @@ document.writeln(`
 <h1>${isPalyndrom("Я несу гусеня")}</h1>
 
 <h2>Функція, яка видаляє з речення букви, які зустрічаються більше 1 разу ("Бісквіт був дуже ніжним")</h2>
-<h1>${deleteDuplicateLetter(("Бісквіт був дуже ніжним"))}</h1>
+<h1>${deleteDuplicateLetter("Бісквіт був дуже ніжним")}</h1>
 
-`) */
+`)
 
