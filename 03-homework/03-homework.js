@@ -1,17 +1,17 @@
 //Створити функцію getMaxDigit(number) – яка отримує будь-яке число та виводить найбільшу цифру в цьому числі. Приклади: 1236 -> 6, 987 -> 9, 385 -> 8
 const getMaxDigit = (number) =>{
-    const neWnumber = number.toString()
+    const newNumber = number.toString()
     let max;
-    for (let i = 0; i < neWnumber.length; i++) {
-        max = neWnumber[0];
-        if (max < neWnumber[i]) max = neWnumber[i]
+    for (let i = 0; i < newNumber.length; i++) {
+        max = newNumber[0];
+        if (max < newNumber[i]) max = newNumber[i]
     }
     return parseInt(max);
 }
 
 //Створити функцію, яка визначає ступінь числа. Не використовуючи Math.pow та **. Використовуйте цикл
 const exponentiation = (number, toExponent) => {
-    result = number;
+    let result = number;
     for (let i = 1; i < toExponent; i++) {
         result *= number; 
     } 
