@@ -2,12 +2,14 @@ let min, max;
 const messages = ["Enter first integer:", "Enter second integer:", "Enter only integers:"];
 const processed = (message) => parseInt(prompt(message))
 
+min = processed(messages[0]);
 while (isNaN(min)) {
-    min == undefined ? min = processed(messages[0]) : min = processed(messages[2]);
+    min = processed(messages[2]);
 }
 
+max = processed(messages[1]);
 while (isNaN(max)) {
-    max == undefined ? max = processed(messages[1]) : max = processed(messages[2]);
+    max = processed(messages[2]);
 }
 
 const skipEven = confirm("Skip even numbers?")
