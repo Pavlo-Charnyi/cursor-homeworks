@@ -225,7 +225,7 @@ console.log(divideByThree("live"));
 /**
  * 10. Create function  generateCombinations(word), which generates all possible combinations (unique) of letters of the word. 
  * @param {*} inputStr 
- * @returns 
+ * @returns array of unique word combinations
  */
 const generateCombinations = (inputStr) => {
     const arrayOfCombinations = [inputStr]
@@ -247,5 +247,5 @@ const generateCombinations = (inputStr) => {
 document.writeln(`
 <h2>10. Create function  generateCombinations(word), which generates all possible combinations (unique) of letters of the word.</h2>
 <h3>generateCombinations("lord")</h3>
-<p>${generateCombinations("lord")}</p>`);
+<p>[${generateCombinations("lord")}]</p>`);
 console.log(generateCombinations("lord")); 
