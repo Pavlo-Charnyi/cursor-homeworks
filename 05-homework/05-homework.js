@@ -169,7 +169,7 @@ console.log(getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 
  * 8. Create function replaceBadWords(string), which shall:
  * 1) split string into words;
  * 2) replace all bad words with "*";
- * When solving this task, the array sould be splited into words with .split(" ") function, and joined with .join(" ") method.  The bad words are: shit та fuck. Also implement a possibility of extending list of bad words with new ones in future.
+ * When solving this task, the array sould be splited into words with .split(" ") function, and joined with .join(" ") method.  The bad words are: "shit" and "fuck". Also implement a possibility of extending list of bad words with new ones in future.
  * @param {*} string 
  * @returns string in which words from the list of bad words are replaced with "*"
  */
@@ -194,7 +194,7 @@ document.writeln(`
 <h2>8. Create function replaceBadWords(string), which shall:</h2>
 <h3>1) split string into words;</h3>
 <h3>2) replace all bad words with "*";</h3>
-<h3>When solving this task, the array sould be splited into words with .split(" ") function, and joined with .join(" ") method.  The bad words are: shit та fuck. Also implement a possibility of extending list of bad words with new ones in future.</h3>
+<h3>When solving this task, the array sould be splited into words with .split(" ") function, and joined with .join(" ") method.  The bad words are: "shit" and "fuck". Also implement a possibility of extending list of bad words with new ones in future.</h3>
 <h3>replaceBadWords("It's bullshit!")</h3>
 <h1>${replaceBadWords("It's bullshit!")}</h1>`);
 console.log(replaceBadWords("It's bullshit!")); 
