@@ -186,8 +186,8 @@ const replaceBadWords = (string) => {
         return el;
     });
 
-    const resultArray = cenzoredArray.join(" ");
-    return resultArray;
+    const resultString = cenzoredArray.join(" ");
+    return resultString;
 } 
 
 document.writeln(`
