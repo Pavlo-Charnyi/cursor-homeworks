@@ -54,7 +54,7 @@ console.log(getRandomArray(15, 1, 100));
         }
     }
     
-    return moda;
+    return mode;
     }
 
 document.writeln(`
