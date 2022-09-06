@@ -44,13 +44,13 @@ console.log(getRandomArray(15, 1, 100));
         } 
     }
     
-    let moda = duplicateValues[0];
+    let mode = duplicateValues[0];
     let maxValue = elementsRating[0];
     
     for (let i = 0; i < elementsRating.length; i++) {
         if (elementsRating[i] > maxValue) {
             maxValue = elementsRating[i]
-            moda = duplicateValues[i]
+            mode = duplicateValues[i]
         }
     }
     
