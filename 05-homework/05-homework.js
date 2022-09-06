@@ -223,13 +223,16 @@ document.writeln(`
 console.log(divideByThree("live")); 
 
 /**
- * 10. Create function  generateCombinations(word), which generates all possible combinations (unique) of letters of the word. 
- * @param {*} inputStr 
+ * 10. Create function generateCombinations(word), which generates all possible unique combinations of letters of the passed into the function word. Limit size of the passed word to naximum of 10 letters.
+ * @param {*} word 
  * @returns array of unique word combinations
  */
-const generateCombinations = (inputStr) => {
-    const arrayOfCombinations = [inputStr]
-    const lettersAarray = inputStr.split("");
+const generateCombinations = (word) => {
+    if(word.length > 10) {
+        return "The passed word is more than 10 letters long! Please pass a word which is less than 10 letters long. Thank you."
+    }
+    const arrayOfCombinations = [word]
+    const lettersAarray = word.split("");
     const letterRandomizer = (inputArray) => inputArray.sort(() => Math.random() - 0.5);
 
     for (let i = 0; i < lettersAarray.length ** lettersAarray.length; i++) {
