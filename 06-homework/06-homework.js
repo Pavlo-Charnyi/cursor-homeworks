@@ -72,8 +72,7 @@ console.log(getAverageMark(students[0]));
 
  const getStudentInfo = (student) => {
   const { course, name } = student;
-  const studentInfo = { course, name, "averageMark": getAverageMark(student) };
-  return studentInfo;
+  return { course, name, "averageMark": getAverageMark(student) };
 }
 console.log(getStudentInfo(students[0])); 
 // console.log(getStudentInfo(students[1])); 
