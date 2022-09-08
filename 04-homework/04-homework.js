@@ -9,7 +9,7 @@ function getRandomNumber (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Розділіть студентів на пари(хлопець + дівчина) для работи над проєктом. У вас повинен вийти вкладений масив з парами студентів: [["Олександр", "Олена"], [..], [...]];
+//1. Розділіть студентів на пари(хлопець + дівчина) для работи над проєктом. У вас повинен вийти вкладений масив з парами студентів: [["Олександр", "Олена"], [..], [...]];
 const getPairs = (students) => {
     const newArr = students.slice(), male = [], female = [], resultArray = []
     for (let i = 0; i < newArr.length; i++) {
@@ -28,7 +28,7 @@ const getPairs = (students) => {
 }
 
 
-// Зіставте пари з попереднього завдання та теми проєктів, над якими студенти будуть працювати. Повинен вийти вкладений масив виду: [["Олександр і Олена", "Теорія автоматів"], [...], [...]]
+//2. Зіставте пари з попереднього завдання та теми проєктів, над якими студенти будуть працювати. Повинен вийти вкладений масив виду: [["Олександр і Олена", "Теорія автоматів"], [...], [...]]
 const projectAssigner = (studentsPairs, themes) => {
     const pairsProject = []
 
@@ -39,7 +39,7 @@ const projectAssigner = (studentsPairs, themes) => {
     return pairsProject
 }
 
-// Зіставте оцінки(marks) зі студентом(students): [["Саша", 4], [...], [...]]
+//3.  Зіставте оцінки(marks) зі студентом(students): [["Саша", 4], [...], [...]]
 const markAssigner = (students, marks) => {
     const studentsArray = [...students], marksArray = [...marks], studentMark = []
     for (let i = 0; i < studentsArray.length; i++) {
@@ -51,17 +51,13 @@ const markAssigner = (students, marks) => {
 }
 
 
-//Поставте кожній парі випадкову оцінку(від 1 до 5) за проєкт(тут функція буде нечистою, але не повинна мутувати массив): [["Олександр і Олена", "Теорія автоматів", 5], [...], [...]]
+//4. Поставте кожній парі випадкову оцінку(від 1 до 5) за проєкт(тут функція буде нечистою, але не повинна мутувати массив): [["Олександр і Олена", "Теорія автоматів", 5], [...], [...]]
 const pairMarkAssigner = (pairsProject, marks) => {
-    
-    const pairsProjectMarks = []
-    
-    for (let i = 0; i < pairsProject.length; i++) {
-        pairsProjectMarks[i] = pairsProject[i].toString().split(",");
-        pairsProjectMarks[i].push(marks[getRandomNumber(0, marks.length-1)])
-    }
-
-    return pairsProjectMarks
+    return pairsProject.reduce((accum, curr, index) => {
+        accum.push(curr.toString().split(","));
+        accum[index].push(marks[getRandomNumber(0, marks.length-1)]);
+        return accum;
+    }, [])
 }
 
 
@@ -77,7 +73,7 @@ console.log(studentMark);
 const pairMarkAssigned = pairMarkAssigner (pairsProject, marks);
 console.log(pairMarkAssigned);
 
-document.writeln(`
+/* document.writeln(`
 <h1 style="color: darkblue;" >Результати роботи функцій дивись в консолі.</h1><hr>
 
 <h1>Після виклику функцій оригінальні масиви залишись без змін (мутацій):</h1>
@@ -90,4 +86,4 @@ document.writeln(`
 <h2>Масив оцінок:</h2>
 <p>[${marks}]</p>
 `);
-
+ */
