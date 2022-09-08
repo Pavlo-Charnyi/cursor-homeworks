@@ -19,10 +19,8 @@ const getPairs = (students) => {
         }
         male.push(newArr[i]);
     }
-    
-    male.length >= female.length ? resultArray.length = male.length : resultArray.length = female.length
        
-    for (let i = 0; i < resultArray.length; i++) {
+    for (let i = 0; i < male.length; i++) {
         resultArray[i] = [male[i], female[i]];
     }
 
@@ -32,10 +30,10 @@ const getPairs = (students) => {
 
 // Зіставте пари з попереднього завдання та теми проєктів, над якими студенти будуть працювати. Повинен вийти вкладений масив виду: [["Олександр і Олена", "Теорія автоматів"], [...], [...]]
 const projectAssigner = (studentsPairs, themes) => {
-    const pairs = [...studentsPairs], topics = [...themes], pairsProject = []
+    const pairsProject = []
 
-    for (let i = 0; i < pairs.length; i++) {
-        pairsProject[i] = [`${pairs[i][0]} і ${pairs[i][1]}`, topics[i]]
+    for (let i = 0; i < studentsPairs.length; i++) {
+        pairsProject[i] = [`${studentsPairs[i][0]} і ${studentsPairs[i][1]}`, themes[i]]
 
     }
     return pairsProject
@@ -55,15 +53,14 @@ const markAssigner = (students, marks) => {
 
 //Поставте кожній парі випадкову оцінку(від 1 до 5) за проєкт(тут функція буде нечистою, але не повинна мутувати массив): [["Олександр і Олена", "Теорія автоматів", 5], [...], [...]]
 const pairMarkAssigner = (pairsProject, marks) => {
-    const pairsProjectMarks = [...pairsProject]
     
-    for (let i = 0; i < pairsProjectMarks.length; i++) {
-        pairsProjectMarks[i] = pairsProjectMarks[i].toString().split(",");
-    }
-
-    for (let i = 0; i < pairsProjectMarks.length; i++) {
+    const pairsProjectMarks = []
+    
+    for (let i = 0; i < pairsProject.length; i++) {
+        pairsProjectMarks[i] = pairsProject[i].toString().split(",");
         pairsProjectMarks[i].push(marks[getRandomNumber(0, marks.length-1)])
     }
+
     return pairsProjectMarks
 }
 
@@ -77,9 +74,8 @@ console.log(pairsProject);
 const studentMark = markAssigner(students, marks);
 console.log(studentMark); 
 
-const pairMarkAssigned = pairMarkAssigner (pairsProject, marks)
+const pairMarkAssigned = pairMarkAssigner (pairsProject, marks);
 console.log(pairMarkAssigned);
-
 
 document.writeln(`
 <h1 style="color: darkblue;" >Результати роботи функцій дивись в консолі.</h1><hr>
