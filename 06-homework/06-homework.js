@@ -110,7 +110,7 @@ const getBestStudent = (students) => {
   let bestMark, bestMarkStudent;
 
   for (const key in studentMarksObject) {
-    if(bestMarkStudent == undefined) {
+    if(!bestMarkStudent) {
       bestMarkStudent = key;
       bestMark = studentMarksObject[key];
     } 
@@ -128,17 +128,11 @@ console.log(getBestStudent(students));
 /**
 6. Create function calculateWordLetters("тест") --> { "т": 2, "е": 1, "с": 1 } – which returns an object, in which keys are the letters of the passed, and values are the quantity of times they appear in the word.
 */
-
  const calculateWordLetters = (word) => {
-  const lettersArray = word.split("") 
-
-  const lettersObject = lettersArray.reduce((accum, current) => {
-    
+  return word.split("").reduce((accum, current) => {
     !accum[current] ? (accum[current] = 1) : (accum[current]++);
     return accum;
-  }, {})
-
-  return lettersObject
+    }, {})  
  }
 
 console.log(calculateWordLetters("тест")); 
