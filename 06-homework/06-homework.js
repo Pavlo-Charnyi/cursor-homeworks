@@ -58,9 +58,14 @@ console.log(getSubjects(students[0]));
   const allMarksTotal = allMarksArray.reduce((accum, curr) => accum += curr, 0)
   const averageMark = (allMarksTotal / allMarksArray.length).toFixed(2);
 
-  return averageMark;
+  return Number(averageMark);
 
  } 
+
+const am = getAverageMark(students[0]);
+
+console.log(typeof am, "am");
+
 console.log(getAverageMark(students[0])); 
 // console.log(getAverageMark(students[1]));
 // console.log(getAverageMark(students[2]));
@@ -101,7 +106,7 @@ const getBestStudent = (students) => {
 
   const studentMarksObject = students.reduce((accum, current) => {
     for (const key in current) {
-      accum[current.name] = Number(getAverageMark(current));
+      accum[current.name] = getAverageMark(current);
     }
     return accum;
   }, {})
@@ -129,7 +134,11 @@ console.log(getBestStudent(students));
 */
  const calculateWordLetters = (word) => {
   return word.split("").reduce((accum, current) => {
-    !accum[current] ? (accum[current] = 1) : (accum[current]++);
+    if(!accum[current]) {
+      accum[current] = 1;
+    } else {
+      accum[current]++;
+    }
     return accum;
     }, {})  
  }

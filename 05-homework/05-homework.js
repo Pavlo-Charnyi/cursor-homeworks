@@ -28,7 +28,7 @@ console.log(getRandomArray(15, 1, 100));
  * @returns number - mode of all accepted arguments
  */
  const getModa = (...numbers) => {
-    const filteredIntegerNumbers = numbers.filter(el => Number.isInteger(el));
+    const filteredIntegerNumbers = filterIntegers(numbers);
     const sortedArray = filteredIntegerNumbers.sort((a,b) => a - b);
     const duplicateValues = [], elementsRating = []
     
@@ -69,7 +69,7 @@ console.log(getModa(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2));
  * @returns number - average of all accepted arguments
  */
  const getAverage = (...numbers) => {
-    const filteredIntegerNumbers = numbers.filter(el => Number.isInteger(el));
+    const filteredIntegerNumbers = filterIntegers(numbers);
     let summ = 0;
     for (let i = 0; i < filteredIntegerNumbers.length; i++) {
             summ += filteredIntegerNumbers[i];
@@ -89,20 +89,22 @@ console.log(getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2));
  * @returns 
  */
  const getMedian = (...numbers) => {
-    const filteredIntegerNumbers = numbers.filter(el => Number.isInteger(el));
+    const filteredIntegerNumbers = filterIntegers(numbers);
     const numbersArray = filteredIntegerNumbers.sort((a, b) => a - b)
     const numbersArrayLength = numbersArray.length;
     const isNumbersArrayEven = numbersArrayLength % 2 === 0;
 
-    let medianIndex, median, middleLeftIndex, middleRightIndex;
+    let median;
 
     if(!isNumbersArrayEven) {
-        medianIndex = Math.floor(numbersArrayLength / 2);
+        let medianIndex = Math.floor(numbersArrayLength / 2);
         median = numbersArray[medianIndex]
     } else {
-        middleLeftIndex = (numbersArrayLength / 2) - 1;
-        middleRightIndex = numbersArrayLength / 2;
-        median = (numbersArray[middleLeftIndex] + numbersArray[middleRightIndex]) / 2;
+        let middleLeftIndex = (numbersArrayLength / 2) - 1;
+        let middleRightIndex = numbersArrayLength / 2;
+        let leftElement = numbersArray[middleLeftIndex]
+        let rightElement = numbersArray[middleRightIndex]
+        median = (leftElement + rightElement) / 2;
     }
 
     return median;
@@ -118,10 +120,8 @@ console.log(getMedian(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2));
  * @param  {...any} numbers 
  * @returns array of odd numbers
  */
-const filterEvenNumbers = (...numbers) => {
-    const evenNnumbers = numbers.filter(el => el % 2 !== 0);
-    return evenNnumbers;
-}
+const filterEvenNumbers = (...numbers) => evenNnumbers = numbers.filter(el => el % 2 !== 0);
+    
 document.writeln(`
 <h2>5. Create function filterEvenNumbers(...numbers) – which filters even numbers accepted as arguments</h2>
 <h3>filterEvenNumbers(1, 2, 3, 4, 5, 6)</h3>
@@ -199,7 +199,6 @@ document.writeln(`
 <h1>${replaceBadWords("It's bullshit!")}</h1>`);
 console.log(replaceBadWords("It's bullshit!")); 
 
-/**
 
 /**
  * 9. Create function divideByThree(word), which splits every word into 3 letters, and if there are less then 3 letters then doesn't split. Spaces are deleted. String is transformed into lower case.
@@ -235,7 +234,13 @@ const generateCombinations = (word) => {
     const lettersAarray = word.split("");
     const letterRandomizer = (inputArray) => inputArray.sort(() => Math.random() - 0.5);
 
-    for (let i = 0; i < lettersAarray.length ** lettersAarray.length; i++) {
+    let iterationsQuantity = lettersAarray.length ** 5;
+
+    if (lettersAarray.length > 4) {
+        iterationsQuantity = lettersAarray.length ** lettersAarray.length;
+    } 
+
+    for (let i = 0; i < iterationsQuantity; i++) {
         sortedArray = letterRandomizer(lettersAarray);
         joinedWord = sortedArray.join("");
 
@@ -250,5 +255,10 @@ const generateCombinations = (word) => {
 document.writeln(`
 <h2>10. Create function  generateCombinations(word), which generates all possible combinations (unique) of letters of the word.</h2>
 <h3>generateCombinations("lord")</h3>
-<p>[${generateCombinations("lord")}]</p>`);
-console.log(generateCombinations("lord")); 
+<p>[${generateCombinations("lord")}]</p>`); 
+console.log(generateCombinations("man")); 
+
+//helper function
+function filterIntegers(arr) {
+    return arr.filter(Number.isInteger)
+}

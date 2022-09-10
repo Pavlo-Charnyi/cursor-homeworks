@@ -54,24 +54,27 @@ const markAssigner = (students, marks) => {
 //4. Поставте кожній парі випадкову оцінку(від 1 до 5) за проєкт(тут функція буде нечистою, але не повинна мутувати массив): [["Олександр і Олена", "Теорія автоматів", 5], [...], [...]]
 const pairMarkAssigner = (pairsProject, marks) => {
     return pairsProject.reduce((accum, curr, index) => {
-        accum.push(curr.toString().split(","));
-        accum[index].push(marks[getRandomNumber(0, marks.length-1)]);
+        let mark = marks[getRandomNumber(0, marks.length-1)] 
+        let pair = curr.toString().split(",");
+        pair.push(mark); 
+        accum[index] = pair;
         return accum;
     }, [])
 }
 
-
 const pairs = getPairs(students);
-console.log(pairs);
 
 const pairsProject = projectAssigner(pairs, themes);
-console.log(pairsProject); 
 
 const studentMark = markAssigner(students, marks);
-console.log(studentMark); 
 
 const pairMarkAssigned = pairMarkAssigner (pairsProject, marks);
+
+console.log(pairs);
+console.log(pairsProject); 
+console.log(studentMark); 
 console.log(pairMarkAssigned);
+
 
 document.writeln(`
 <h1 style="color: darkblue;" >Результати роботи функцій дивись в консолі.</h1><hr>
