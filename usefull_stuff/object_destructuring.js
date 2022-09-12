@@ -133,3 +133,34 @@ const getUnique2 = (arr) => {
 
 console.log(getUnique(arr));
 console.log(getUnique2(arr));
+
+
+
+//------Functional programming
+
+const ladder = {
+    currentStep: 0,
+  
+    up(steps) {
+      if (steps && typeof steps === "number") {
+        this.currentStep += steps;
+  
+        return this;
+      }
+  
+      this.currentStep++;
+      console.log(this.currentStep);
+  
+      return this;
+    },
+    down() {
+      if (this.currentStep === 0) {
+        return this;
+      }
+  
+      this.currentStep--;
+      console.log(this.currentStep);
+  
+      return this;
+    },
+  };
