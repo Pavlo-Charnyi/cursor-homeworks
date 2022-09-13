@@ -120,7 +120,7 @@ console.log(getMedian(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2));
  * @param  {...any} numbers 
  * @returns array of odd numbers
  */
-const filterEvenNumbers = (...numbers) => evenNnumbers = numbers.filter(el => el % 2 !== 0);
+const filterEvenNumbers = (...numbers) =>  numbers.filter(el => el % 2 !== 0);
     
 document.writeln(`
 <h2>5. Create function filterEvenNumbers(...numbers) – which filters even numbers accepted as arguments</h2>
