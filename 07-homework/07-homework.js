@@ -61,7 +61,7 @@ function getMySalary(country) {
     return objectToReturn;
   }
 
-  setInterval(() =>  console.log(newObjectReturnFn()), 1000);
+  setInterval(() =>  console.log(newObjectReturnFn()), 10000);
 
 }
 
