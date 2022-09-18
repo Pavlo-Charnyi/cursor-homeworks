@@ -20,11 +20,11 @@ class Student {
   }
 
   set marks(mark) {
-    if(!this.dismissed) {
-      this.marksArr.push(mark);
-      return this.marksArr;
+    if(this.marks) {
+        this.marksArr.push(mark);
+        return this.marksArr;
     } else {
-      return null;
+        return null;
     }
   }
 
@@ -99,8 +99,14 @@ class BudgetStudent extends Student {
 const student2 = new BudgetStudent("Cursor Education ІТ-school", "Front-End", "Сергій Притула", [4, 4, 4, 5])
 
 console.log(student2);
+student2.marks;
 student2.getScholarship;
 student2.dismiss;
 student2.getScholarship;
-// student2.recover;
-// student2.getScholarship;
+student2.recover;
+student2.getScholarship;
+student2.marks = 2;
+student2.marks = 2;
+student2.getScholarship;
+console.log(student2.marks);
+
