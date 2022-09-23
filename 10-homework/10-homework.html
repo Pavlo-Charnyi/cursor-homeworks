@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homework #10 - Events</title>
     <style>
+        body{
+            background-image: url("images/ibanez-background.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
         h1{
             text-align: center;
             font-size: 1.6rem;
@@ -15,38 +20,35 @@
         }
         .container {
             width: 600px;
-            margin: 0 auto;
+            margin: 40vh auto 0;
             display: flex;
-            /* flex-wrap: wrap; */
             justify-content: space-between;
-            background-color: lightgray;
             padding: 20px;
             border-radius: 10px;
             
         }
         
         .chord{
-            background-color: blueviolet;
+            background-color: #730b0e;
             color: white;
             font-size: 4rem;
             border-radius: 10px;
             padding: 5px;
             min-width: 70px;
             text-align: center;
-            border: 2px solid lightgray;
+            border: 2px solid #a89216;
 
         }
 
         .chord_active{
-            background-color: white;
-            color: blueviolet;
-            border: 2px solid blueviolet;
+            background-color: #dec744;
+            color: #730b0e;
+            border: 2px solid #730b0e;
         }
 
     </style>
 </head>
 <body>
-    <h1>HomeWork #10: Events</h1>
     
     <div class="container">
         <div id="chordE" class="chord">E</div>
