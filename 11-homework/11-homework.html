@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework #9 - DOM</title>
+    <style>
+        h1{
+            text-align: center;
+            font-size: 1.6rem;
+            font-family: Tahoma, sans-serif;
+            color: rgb(0, 70, 10);
+            margin: 50px 0;
+        }
+        .container {
+            width: 600px;
+            margin: 0 auto;
+            display: flex;
+            /* flex-wrap: wrap; */
+            justify-content: space-between;
+            background-color: lightgray;
+            padding: 20px;
+            border-radius: 10px;
+            
+        }
+        
+        .chord{
+            background-color: blueviolet;
+            color: white;
+            font-size: 4rem;
+            border-radius: 10px;
+            padding: 5px;
+            min-width: 70px;
+            text-align: center;
+            border: 2px solid lightgray;
+
+        }
+
+        .chord_active{
+            background-color: white;
+            color: blueviolet;
+            border: 2px solid blueviolet;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>HomeWork #11: Events</h1>
+    
+    <div class="container">
+        <div id="chordE" class="chord">E</div>
+        <div id="chordA" class="chord">A</div>
+        <div id="chordD" class="chord">D</div>
+        <div id="chordG" class="chord">G</div>
+        <div id="chordB" class="chord">B</div>
+        <div id="chordC" class="chord">C</div>
+    </div>
+    
+
+    <script src="./11-homework.js"></script>
+</body>
+</html>
