@@ -3,13 +3,12 @@ const generateBlocks = () => {
   container.classList.add("container");
   document.body.appendChild(container)
 
-  let divContainer = document.querySelector(".container");
   for (let i = 0; i < 25; i++) {
     let div = document.createElement("div");
     div.style.backgroundColor = generateColor();
     div.style.width = "50px";
     div.style.height = "50px";
-    divContainer.append(div);
+    container.append(div);
   }
 }
 
@@ -17,9 +16,9 @@ generateBlocks();
 
 const generateBlocksInterval = () => {
   setInterval(() => {
-    const isContainer = document.querySelector(".container");
-    if(isContainer) {
-      isContainer.remove();
+    const container = document.querySelector(".container");
+    if(container) {
+      container.remove();
     }
     generateBlocks();
   }, 1000)
@@ -35,6 +34,6 @@ function generateColor() {
   return `rgb(${red}, ${green}, ${blue})`;
 
   function generateNumber() {
-    return Math.floor(Math.random() * (255 - 0 + 1)) + 0;
+    return Math.floor(Math.random() * (255 + 1));
   }
 }
