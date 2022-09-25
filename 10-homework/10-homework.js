@@ -11,7 +11,7 @@ const addElements = (obj) => {
     div.setAttribute("id", key);
     div.textContent = key.slice(-1);
     div.classList.add("chord");
-    let container = document.querySelector(".container");
+    const container = document.querySelector(".container");
     container.append(div);
   });
 }
@@ -20,54 +20,20 @@ addElements(soundsObject);
 
 const elements = document.querySelectorAll(".chord");
 
+const eventKeys = ["KeyA", "KeyE", "KeyD", "KeyG", "KeyB", "KeyC"]
+
 document.addEventListener("keydown", function(e) {
-  switch (e.code) {
-    case "KeyA":
-      elements[0].classList.add("chord_active");
-      soundsObject.soundA.play();
-      break;
-    case "KeyE":
-      elements[1].classList.add("chord_active");
-      soundsObject.soundE.play();
-      break;
-    case "KeyD":
-      elements[2].classList.add("chord_active");
-      soundsObject.soundD.play();
-      break;
-    case "KeyG":
-      elements[3].classList.add("chord_active");
-      soundsObject.soundG.play();
-      break;
-    case "KeyB":
-      elements[4].classList.add("chord_active");
-      soundsObject.soundB.play();
-      break;
-    case "KeyC":
-      elements[5].classList.add("chord_active");
-      soundsObject.soundC.play();
-      break;
+  if (eventKeys.includes(e.code)){
+     const elementIndex = eventKeys.findIndex((el) => el === e.code);
+     elements[elementIndex].classList.add("chord_active");
+     const propName = "sound" + e.code.slice(-1);
+     soundsObject[propName].play();
   }
 });
 
 document.addEventListener("keyup", function(e) {
-  switch (e.code) {
-    case "KeyA":
-      setTimeout(() => elements[0].classList.remove("chord_active"), 700) 
-      break;
-    case "KeyE":
-      setTimeout(() => elements[1].classList.remove("chord_active"), 700) 
-      break;
-    case "KeyD":
-      setTimeout(() => elements[2].classList.remove("chord_active"), 700) 
-      break;
-    case "KeyG":
-      setTimeout(() => elements[3].classList.remove("chord_active"), 700) 
-      break;
-    case "KeyB":
-      setTimeout(() => elements[4].classList.remove("chord_active"), 700) 
-      break;
-    case "KeyC":
-      setTimeout(() => elements[5].classList.remove("chord_active"), 700) 
-      break;
+  if (eventKeys.includes(e.code)){
+     const elementIndex = eventKeys.findIndex((el) => el === e.code);
+     setTimeout(() => elements[elementIndex].classList.remove("chord_active"), 500) 
   }
 });
