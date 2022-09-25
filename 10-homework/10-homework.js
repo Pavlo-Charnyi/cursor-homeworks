@@ -1,66 +1,73 @@
-let soundA = new Audio("./sounds/A.mp3");
-let soundE = new Audio("./sounds/Em.mp3");
-let soundD = new Audio("./sounds/D.mp3");
-let soundG = new Audio("./sounds/G.mp3");
-let soundB = new Audio("./sounds/B.mp3");
-let soundC = new Audio("./sounds/C.mp3");
+const audioList = ["./sounds/A.mp3", "./sounds/E.mp3", "./sounds/D.mp3", "./sounds/G.mp3", "./sounds/B.mp3", "./sounds/C.mp3"]
 
-let chordA = document.querySelector("#chordA")
-let chordE = document.querySelector("#chordE")
-let chordD = document.querySelector("#chordD")
-let chordG = document.querySelector("#chordG")
-let chordB = document.querySelector("#chordB")
-let chordC = document.querySelector("#chordC")
+const soundsObject = audioList.reduce((accum, curr) => {
+  accum["sound" + curr.slice(9, 10)] = new Audio(curr);
+  return accum
+}, {})
+
+const addElements = (obj) => {
+  Object.keys(obj).forEach(key => {
+    let div = document.createElement("div");
+    div.setAttribute("id", key);
+    div.textContent = key.slice(-1);
+    div.classList.add("chord");
+    let container = document.querySelector(".container");
+    container.append(div);
+  });
+}
+
+addElements(soundsObject);
+
+const elements = document.querySelectorAll(".chord");
 
 document.addEventListener("keydown", function(e) {
   switch (e.code) {
     case "KeyA":
-      chordA.classList.add("chord_active");
-      soundA.play();
+      elements[0].classList.add("chord_active");
+      soundsObject.soundA.play();
       break;
     case "KeyE":
-      chordE.classList.add("chord_active");
-      soundE.play();
+      elements[1].classList.add("chord_active");
+      soundsObject.soundE.play();
       break;
     case "KeyD":
-      chordD.classList.add("chord_active");
-      soundD.play();
+      elements[2].classList.add("chord_active");
+      soundsObject.soundD.play();
       break;
     case "KeyG":
-      chordG.classList.add("chord_active");
-      soundG.play();
+      elements[3].classList.add("chord_active");
+      soundsObject.soundG.play();
       break;
     case "KeyB":
-      chordB.classList.add("chord_active");
-      soundB.play();
+      elements[4].classList.add("chord_active");
+      soundsObject.soundB.play();
       break;
     case "KeyC":
-      chordC.classList.add("chord_active");
-      soundC.play();
+      elements[5].classList.add("chord_active");
+      soundsObject.soundC.play();
       break;
   }
-
 });
 
 document.addEventListener("keyup", function(e) {
   switch (e.code) {
     case "KeyA":
-      setTimeout(() => chordA.classList.remove("chord_active"), 700) 
+      setTimeout(() => elements[0].classList.remove("chord_active"), 700) 
       break;
     case "KeyE":
-      setTimeout(() => chordE.classList.remove("chord_active"), 700) 
+      setTimeout(() => elements[1].classList.remove("chord_active"), 700) 
       break;
     case "KeyD":
-      setTimeout(() => chordD.classList.remove("chord_active"), 700) 
+      setTimeout(() => elements[2].classList.remove("chord_active"), 700) 
       break;
     case "KeyG":
-      setTimeout(() => chordG.classList.remove("chord_active"), 700) 
+      setTimeout(() => elements[3].classList.remove("chord_active"), 700) 
       break;
     case "KeyB":
-      setTimeout(() => chordB.classList.remove("chord_active"), 700) 
+      setTimeout(() => elements[4].classList.remove("chord_active"), 700) 
       break;
     case "KeyC":
-      setTimeout(() => chordC.classList.remove("chord_active"), 700) 
+      setTimeout(() => elements[5].classList.remove("chord_active"), 700) 
       break;
   }
 });
