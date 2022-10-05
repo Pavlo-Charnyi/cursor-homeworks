@@ -3,7 +3,8 @@ const getRandomChinese = async (length) => {
     const character = String.fromCharCode(Date.now().toString().slice(-5));
     return character;
   }
-
+  this.length = length;
+  
   const promiseStartTime = performance.now() 
   
   let charactersString = "";
@@ -11,9 +12,9 @@ const getRandomChinese = async (length) => {
   const delayedPromise = () => new Promise((resolve) => 
       setTimeout(() => resolve(getChineseCharacter()), 50))
   
-    while (length > 0) {
+    while (this.length > 0) {
       charactersString += await delayedPromise();
-      length--;
+      this.length--;
     }
 
   const promiseEndTime = performance.now()
