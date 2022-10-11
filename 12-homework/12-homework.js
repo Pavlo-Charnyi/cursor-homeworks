@@ -164,6 +164,7 @@ function getPlanetsInfo() {
               div.append(span);
               counter++;
               console.log(planetObject.name) //certain planet
+              h1 = null;
           } //end of "for"
       })//end of "json" object  
 }//end of getPlanetsInfo function
