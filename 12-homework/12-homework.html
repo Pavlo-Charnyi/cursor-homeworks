@@ -13,9 +13,14 @@
             <!-- <label>
                 Wookie? <input type="checkbox" id="wookie" class="inline"/>
             </label> -->
-            <input type="number" placeholder="Enter number: 1-6"  min="1" max="6" id="episodeNumber">
-            <button class="button" id="getInfoTable">Characters Info</button>
-            <button class="button" id="getPlanetsList">Planets List</button>
+            <!-- placeholder="Enter number: 1-6" -->
+            <label>
+                Enter number 1-6: <input type="number"  min="1" max="6" id="episodeNumber" value="2">
+            </label>
+            <button class="button" id="getInfoTable">Characters</button>
+            <button class="button" id="getAllPlanets">All planets</button>
+            <button class="button" id="getPlanetsList">First 10 planets</button>
+            <div class="planetButtonsDiv" id="planetButtons"></div>
         </nav>
         <section id="displayContent">
             <img src="./images/star-wars-crawl.png" class="opening_crawl">

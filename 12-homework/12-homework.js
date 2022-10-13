@@ -13,7 +13,7 @@ const avatarsObject = {
   "https://swapi.dev/api/people/12/":"./images/Wilhuff Tarkin.jpeg",
   "https://swapi.dev/api/people/13/":"./images/chewbacca.jpeg",
   "https://swapi.dev/api/people/14/":"./images/han_solo.jpeg",
-  "https://swapi.dev/api/people/15/":"./images/han_solo.jpeg",
+  "https://swapi.dev/api/people/15/":"./images/Greedo.jpeg",
   "https://swapi.dev/api/people/16/":"./images/Jabba Desilijic Tiure.jpeg",
   "https://swapi.dev/api/people/18/":"./images/wedge_antilles.jpeg",
   "https://swapi.dev/api/people/19/":"./images/Jek Tono Porkins.jpeg",
@@ -94,11 +94,9 @@ input.addEventListener("change", () => {
   }
 });
 
-let btn = document.querySelector("#getInfoTable");
-btn.addEventListener("click", getCharactersInfoTable);
+let displayContent = document.querySelector("#displayContent");
 
 function getCharactersInfoTable() {
-  let displayContent = document.querySelector("#displayContent");
   displayContent.innerHTML = "";
   let table = document.createElement("table");
   table.setAttribute("id", "charactersTable");
@@ -115,6 +113,7 @@ function getCharactersInfoTable() {
       displayContent.append(h1);
       h1 = null;
   }
+  
   displayContent.append(table);
 
   fetch(filmUrl)
@@ -123,10 +122,8 @@ function getCharactersInfoTable() {
           for (let characterLink of json.characters) {
               // if(wookie) { characterLink += wookieFormat; }
               let character = fetch(characterLink);
-              // console.log("characterLink: ", characterLink)
               character.then(res => res.json())
                        .then(json => { 
-                          // console.log("json ", json) //certain hero object!
                           let tableBody = document.querySelector("#tableBody");
                           let row = tableBody.insertRow(-1);
                           row.insertCell(0).innerHTML = `<img src="${ displayAvatar(avatarsObject, characterLink) }" class="avatar">`;
@@ -138,33 +135,99 @@ function getCharactersInfoTable() {
       });
 }  //end of getCharactersInfoTable function
 
-let btnGetPlanetsList = document.querySelector("#getPlanetsList");
-btnGetPlanetsList.addEventListener("click", getPlanetsInfo);
+let btnGetInfoTable = document.querySelector("#getInfoTable");
+btnGetInfoTable.addEventListener("click", getCharactersInfoTable);
 
-function getPlanetsInfo() {
-  let displayContent = document.querySelector("#displayContent");
-  let div = document.createElement("div");
-  div.className = "planets_container";
+//helper >> start of function buildPlanetsList  
+function buildPlanetsList(jsonObjectResults){
+  let div = document.querySelector('.planets_container');
+  if(!div) {
+    div = document.createElement("div");
+    div.className = "planets_container";
+    displayContent.append(div);
+  }
+  
+  let counter = 1;
+  for (const planetObject of jsonObjectResults) {
+      let span = document.createElement('span');
+      counter !== jsonObjectResults.length 
+          ? span.textContent = planetObject.name + ", " 
+          : span.textContent = planetObject.name;
+      div.append(span);
+      counter++;
+  }
+} // end of buildPlanetsList function
+
+/* getPlanets function start */
+function getPlanets(url) {
+  let planetButtonsDiv = document.querySelector("#planetButtons");
   displayContent.innerHTML = "";
-  h1 = document.createElement("h1");
-  h1.innerHTML = "Here is the list of all planets from Star Wars";
-  displayContent.append(h1);
-  displayContent.append(div);
 
-  fetch("https://swapi.dev/api/planets/")
+  let h1 = document.createElement("h1");
+  h1.innerHTML = "Here are 10 Star Wars planets of total 60. Press <strong>Next/Previous</strong> to see other ones.";
+  displayContent.append(h1);
+
+  fetch(url)
       .then(response => response.json())
       .then(json => {
-          // console.log(json.results) //json.results[0].name
-          let counter = 1;
-          for (const planetObject of json.results) {
-              let span = document.createElement('span');
-              counter !== json.results.length 
-                  ? span.textContent = planetObject.name + ", " 
-                  : span.textContent = planetObject.name;
-              div.append(span);
-              counter++;
-              console.log(planetObject.name) //certain planet
-              h1 = null;
-          } //end of "for"
-      })//end of "json" object  
-}//end of getPlanetsInfo function
+
+          if(json.next) {
+            if(document.querySelector('#nextButton')) {
+              document.querySelector('#nextButton').remove();
+            }
+            let nextButton = document.createElement('button');
+              nextButton.classList.add("button");
+              nextButton.setAttribute("id", "nextButton");
+              nextButton.innerHTML = "Next";
+              planetButtonsDiv.append(nextButton);
+              nextButton.addEventListener("click", () => getPlanets(json.next));
+          }  
+          
+          if(!json.next && document.querySelector('#nextButton')) {
+            document.querySelector('#nextButton').remove();
+          }   
+
+          if(json.previous) {
+            if(document.querySelector('#previousButton')) {
+              document.querySelector('#previousButton').remove();
+            }
+            let previousButton = document.createElement('button');
+              previousButton.classList.add("button");
+              previousButton.setAttribute("id", "previousButton");
+              previousButton.innerHTML = "Previous";
+              planetButtonsDiv.prepend(previousButton);
+              previousButton.addEventListener("click", () => getPlanets(json.previous));
+          }  
+          
+          if(!json.previous && document.querySelector('#previousButton')) {
+            document.querySelector('#previousButton').remove();
+          }    
+
+          buildPlanetsList(json.results);
+      }) //end of second then(json object)  
+  h1 = null;     
+}// end of getPlanets function
+
+
+
+let btnGetPlanetsList = document.querySelector("#getPlanetsList");
+btnGetPlanetsList.addEventListener("click", () => getPlanets("https://swapi.dev/api/planets/"));
+
+let btnGetAllPlanets = document.querySelector("#getAllPlanets");
+btnGetAllPlanets.addEventListener("click", () => {
+  displayContent.innerHTML = "";
+  getAllPlanets("https://swapi.dev/api/planets/");
+})
+
+
+async function getAllPlanets(planetsUrl){
+  const response = await fetch(planetsUrl);
+  const json = await response.json();
+
+  if (json.next) {
+    getAllPlanets(json.next)
+  }
+
+buildPlanetsList(json.results);
+
+}
