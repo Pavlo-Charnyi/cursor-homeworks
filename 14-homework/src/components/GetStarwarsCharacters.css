@@ -1,0 +1,28 @@
+table {
+  border-collapse: collapse;
+  font-family: Tahoma, Geneva, sans-serif;
+  margin-left:auto;
+  margin-right:auto;
+}
+table td {
+  padding: 10px;
+  font-size: 1.5rem;
+}
+table thead td {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: var(--color-orange);
+  font-weight: bold;
+  font-size: 2rem;
+  border: 1px solid var(--color-orange);
+}
+table tbody td {
+  color: var(--color-yellow);
+  border: 1px solid var(--color-orange);
+}
+table tbody tr {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+td:first-child {
+text-align: center;
+}

@@ -1,0 +1,27 @@
+.module2 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
+  width: max-content;
+  min-width: 300px;
+  max-height: 200px;
+  margin: 10px auto 0;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 3rem;
+  color: black;
+  text-shadow: red 0px 0px 5px;
+  border: 1px solid white;
+  background-color: rgba(211, 211, 211, 0.7);
+}
+p{
+  text-align: center;
+  font-size:0.8rem;
+  font-family: 'Press Start 2P', cursive;
+  color: black;
+  text-decoration: underline;
+  text-shadow: none;
+}  
