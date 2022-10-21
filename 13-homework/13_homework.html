@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13 generators, iterators</title>
+    <style>
+
+html {
+--color-yellow: #fbf600;
+--color-orange: #e79935;
+font-size: 18px;
+}    
+
+body {
+background-image: url("./generator.jpg");
+}
+
+.button {
+display: block;
+background-color: var(--color-yellow);
+border-radius: 12px;
+color: #000;
+cursor: pointer;
+font-weight: bold;
+padding: 10px 15px;
+text-align: center;
+transition: 200ms;
+width: 220px;
+box-sizing: border-box;
+border: 0;
+font-size: 20px;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+margin: 0 auto;
+}
+
+.button:not(:disabled):hover,
+.button:not(:disabled):focus {
+outline: 0;
+background: #f4e603;
+box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
+}
+
+.button:disabled {
+filter: saturate(0.2) opacity(0.5);
+-webkit-filter: saturate(0.2) opacity(0.5);
+cursor: not-allowed;
+}
+
+.container{
+    width: 460px;
+    text-align: center;
+    margin: 20vh auto;
+    background-color: rgba(119, 136, 153, 0.7);
+    border-radius: 10px;
+    padding: 20px 10px;
+
+}
+h1{
+    font-size: 30px;
+    color: white;
+    text-shadow: 1px 1px 5px #a5322f;
+    margin-top: 5px;
+}
+.output{
+    background-color: white;
+    color: darkblue;
+    font-size: 24px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #a5322f;
+    width: 220px;
+    margin: 20px auto;
+    box-sizing: border-box;
+
+}
+#increase,
+#decrease {
+    width:50px;
+    font-size: 22px;
+    display: inline-block;
+}
+#output__sample{
+    font-size: 1rem;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Infinite generator</h1>
+        <button class="button" id="next">Next</button>
+        <p class="output" id="output">Output</p>
+        <hr>
+        <h1>Font size modifier</h1>
+        <div class="buttons__container">
+            <button class="button" id="increase">+</button>
+            <button class="button" id="decrease">-</button>
+        </div>
+        <p class="output" id="output__sample">Sample text</p>
+    </div>
+    <script src="./13_homework.js"></script>
+</body>
+</html>
