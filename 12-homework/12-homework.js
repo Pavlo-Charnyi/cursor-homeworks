@@ -84,6 +84,7 @@ if(input.value){
 }
 
 let h1 = null;
+
 input.addEventListener("change", () => {
   if(input.value > 0 && input.value < 7){
       filmUrl = "https://swapi.dev/api/films/" + Number(input.value);
@@ -94,9 +95,28 @@ input.addEventListener("change", () => {
   }
 });
 
+function fetchCharacters(url){
+  fetch(url)
+  .then(response => response.json())
+  .then(json => {
+      for (let characterLink of json.characters) {
+          let character = fetch(characterLink);
+          character.then(res => res.json())
+                   .then(json => { 
+                      let tableBody = document.querySelector("#tableBody");
+                      let row = tableBody.insertRow(-1);
+                      row.insertCell(0).innerHTML = `<img src="${ displayAvatar(avatarsObject, characterLink) }" class="avatar">`;
+                      row.insertCell(1).innerHTML = json.name;
+                      row.insertCell(2).innerHTML = json.gender;
+                      row.insertCell(3).innerHTML = json.birth_year;
+                  }); 
+      } //end of "for"
+  });
+}
+
 let displayContent = document.querySelector("#displayContent");
 
-function getCharactersInfoTable() {
+function getCharactersInfoTable(url) {
   displayContent.innerHTML = "";
   let table = document.createElement("table");
   table.setAttribute("id", "charactersTable");
@@ -116,27 +136,13 @@ function getCharactersInfoTable() {
   
   displayContent.append(table);
 
-  fetch(filmUrl)
-      .then(response => response.json())
-      .then(json => {
-          for (let characterLink of json.characters) {
-              // if(wookie) { characterLink += wookieFormat; }
-              let character = fetch(characterLink);
-              character.then(res => res.json())
-                       .then(json => { 
-                          let tableBody = document.querySelector("#tableBody");
-                          let row = tableBody.insertRow(-1);
-                          row.insertCell(0).innerHTML = `<img src="${ displayAvatar(avatarsObject, characterLink) }" class="avatar">`;
-                          row.insertCell(1).innerHTML = json.name;
-                          row.insertCell(2).innerHTML = json.gender;
-                          row.insertCell(3).innerHTML = json.birth_year;
-                      }); 
-          } //end of "for"
-      });
-}  //end of getCharactersInfoTable function
+  fetchCharacters(url);
+
+} //end of getCharactersInfoTable function
+
 
 let btnGetInfoTable = document.querySelector("#getInfoTable");
-btnGetInfoTable.addEventListener("click", getCharactersInfoTable);
+btnGetInfoTable.addEventListener("click", () => getCharactersInfoTable(filmUrl));
 
 //helper >> start of function buildPlanetsList  
 function buildPlanetsList(jsonObjectResults){
@@ -147,15 +153,16 @@ function buildPlanetsList(jsonObjectResults){
     displayContent.append(div);
   }
   
-  let counter = 1;
-  for (const planetObject of jsonObjectResults) {
+  jsonObjectResults.forEach((planetObjectElement, index) => {
       let span = document.createElement('span');
-      counter !== jsonObjectResults.length 
-          ? span.textContent = planetObject.name + ", " 
-          : span.textContent = planetObject.name;
+      if(index !== (jsonObjectResults.length - 1)){
+        span.textContent = planetObjectElement.name + ", ";
+      } else {
+        span.textContent = planetObjectElement.name;
+      }
       div.append(span);
-      counter++;
-  }
+  }); 
+
 } // end of buildPlanetsList function
 
 /* getPlanets function start */
