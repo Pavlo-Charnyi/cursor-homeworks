@@ -230,11 +230,11 @@ btnGetAllPlanets.addEventListener("click", () => {
 async function getAllPlanets(planetsUrl){
   const response = await fetch(planetsUrl);
   const json = await response.json();
+  promisesArray.push(json)
 
   if (json.next) {
     getAllPlanets(json.next)
   }
 
-buildPlanetsList(json.results);
-
+  buildPlanetsList(json.results);
 }
