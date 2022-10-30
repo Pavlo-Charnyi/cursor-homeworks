@@ -210,13 +210,15 @@ function getPlanets(url) {
             document.querySelector('#previousButton').remove();
           }    
 
+          console.log(json.results);
           buildPlanetsList(json.results);
       }) //end of second then(json object)  
   h1 = null;     
 }// end of getPlanets function
 
 
-
+/* 
+old version, without Promise.all
 let btnGetPlanetsList = document.querySelector("#getPlanetsList");
 btnGetPlanetsList.addEventListener("click", () => getPlanets("https://swapi.dev/api/planets/"));
 
@@ -225,7 +227,6 @@ btnGetAllPlanets.addEventListener("click", () => {
   displayContent.innerHTML = "";
   getAllPlanets("https://swapi.dev/api/planets/");
 })
-
 
 async function getAllPlanets(planetsUrl){
   const response = await fetch(planetsUrl);
@@ -237,3 +238,28 @@ async function getAllPlanets(planetsUrl){
 
   buildPlanetsList(json.results);
 }
+ */
+
+let btnGetAllPlanetsPromiseAll = document.querySelector("#getAllPlanetsPromiseAll");
+btnGetAllPlanetsPromiseAll.addEventListener("click", () => {
+  displayContent.innerHTML = "";
+  getAllPlanetsPromiseAll(arrayForPromises = [], "https://swapi.dev/api/planets/");
+})
+
+async function getAllPlanetsPromiseAll(arr, planetsUrl){
+  const response = await fetch(planetsUrl);
+  const json = await response.json();
+
+  if (json.next) {
+    getAllPlanetsPromiseAll(arr, json.next)
+  }
+  arr.push(json)
+
+  if(!json.next){
+    Promise.all(arr)
+    arr.forEach(el => buildPlanetsList(el.results));
+  }
+}
+
+
+// buildPlanetsList(json.results);
