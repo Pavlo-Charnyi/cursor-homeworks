@@ -217,28 +217,10 @@ function getPlanets(url) {
 }// end of getPlanets function
 
 
-/* 
-old version, without Promise.all
+
 let btnGetPlanetsList = document.querySelector("#getPlanetsList");
 btnGetPlanetsList.addEventListener("click", () => getPlanets("https://swapi.dev/api/planets/"));
 
-let btnGetAllPlanets = document.querySelector("#getAllPlanets");
-btnGetAllPlanets.addEventListener("click", () => {
-  displayContent.innerHTML = "";
-  getAllPlanets("https://swapi.dev/api/planets/");
-})
-
-async function getAllPlanets(planetsUrl){
-  const response = await fetch(planetsUrl);
-  const json = await response.json();
-
-  if (json.next) {
-    getAllPlanets(json.next)
-  }
-
-  buildPlanetsList(json.results);
-}
- */
 
 let btnGetAllPlanetsPromiseAll = document.querySelector("#getAllPlanetsPromiseAll");
 btnGetAllPlanetsPromiseAll.addEventListener("click", () => {
@@ -260,6 +242,3 @@ async function getAllPlanetsPromiseAll(arr, planetsUrl){
     arr.forEach(el => buildPlanetsList(el.results));
   }
 }
-
-
-// buildPlanetsList(json.results);
