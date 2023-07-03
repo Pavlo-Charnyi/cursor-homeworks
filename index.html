@@ -11,7 +11,7 @@
         font-family: sans-serif;
       }
       h1{
-        color:#39ff14;
+        color:silver;
         /* width: 100%; */
         text-align: center;
       }
@@ -27,15 +27,19 @@
       }
       .container {
         display: grid;
-        grid-template-columns: auto 600px auto;
+        justify-content: center;
+        grid-template-columns: 600px;
+        margin: 0 auto;
+      }
+      .wrapper {
+        padding: 0 20px;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <div></div>
+      <h1>My <span style="color: #e9ca31;">JavaScript</span> and <span style="color: #5ed3f3;">React</span> Homeworks</h1>
       <div class="wrapper">
-        <h1>My JS Homeworks</h1>
         <p><a
           href="https://pavlo-charnyi.github.io/react-hooks-homework/"
           target="_blank"
@@ -90,7 +94,6 @@
           >Variables and Data Types</a
         ></p>
       </div>
-      <div></div>
     </div>
   </body>
 </html>
