@@ -12,7 +12,6 @@
       }
       h1{
         color:silver;
-        /* width: 100%; */
         text-align: center;
       }
       a {
@@ -26,9 +25,11 @@
         padding: 2px 8px;
       }
       .container {
+        max-width: 600px;
+        min-width: 300px;
         display: grid;
         justify-content: center;
-        grid-template-columns: 600px;
+        grid-template-columns: 1fr;
         margin: 0 auto;
       }
       .wrapper {
